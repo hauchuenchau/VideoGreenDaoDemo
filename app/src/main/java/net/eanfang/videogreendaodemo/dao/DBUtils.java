@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class DBUtils {
     /**
-     * List<User> list=DBUtils.getQueryBuilder(User.class)
-     * .where(UserDao.Properties.Size.ge(5))
-     * .orderAsc(UserDao.Properties.Id)
+     * List<Model> list=DBUtils.getQueryBuilder(Model.class)
+     * .where(ModelDao.Properties.Size.ge(5))
+     * .orderAsc(ModelDao.Properties.Id)
      * .list();
      *
      * @param clazz
@@ -88,7 +88,7 @@ public class DBUtils {
     /**
      * 通过传入实例删除单个对象
      * 1.要全部属性匹配上才能删除
-     * DBUtils.delete(new User(Long.parseLong("5"),"pp","5",3))
+     * DBUtils.delete(new Model(Long.parseLong("5"),"pp","5",3))
      *
      * @param
      * @return
@@ -107,7 +107,7 @@ public class DBUtils {
     }
     /**
      * 按条件(where)删除对象
-     * DBUtils.deleteWhere(User.class, UserDao.Properties.Name.eq("tst"));
+     * DBUtils.deleteWhere(Model.class, ModelDao.Properties.Name.eq("tst"));
      *
      * @param
      * @return
@@ -303,7 +303,7 @@ public class DBUtils {
     }
     /**
      * 按条件查
-     * DBUtils.queryWhere(User.class, UserDao.Properties.Name.eq("tst"));
+     * DBUtils.queryWhere(Model.class, ModelDao.Properties.Name.eq("tst"));
      *
      * @param clazz
      * @param cond
@@ -326,7 +326,7 @@ public class DBUtils {
     }
     /**
      * 按条件查询(有排序)
-     * DBUtils.queryWhere(User.class,UserDao.Properties.Size.ge(5),true, UserDao.Properties.Id);
+     * DBUtils.queryWhere(Model.class,ModelDao.Properties.Size.ge(5),true, ModelDao.Properties.Id);
      * @param clazz
      * @param cond
      * @param isAsc true 为升序(小-->大)
@@ -354,7 +354,7 @@ public class DBUtils {
     }
     /**
      * 按条件查询
-     * DBUtils.queryWhereOr(User.class,UserDao.Properties.Size.ge(5),UserDao.Properties.Identity.eq("3"),true, UserDao.Properties.Id);
+     * DBUtils.queryWhereOr(Model.class,ModelDao.Properties.Size.ge(5),ModelDao.Properties.Identity.eq("3"),true, ModelDao.Properties.Id);
      *
      * @param clazz
      * @param cond1
