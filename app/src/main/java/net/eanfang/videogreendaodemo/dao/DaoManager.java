@@ -8,7 +8,11 @@ import net.eanfang.videogreendaodemo.DaoSession;
 import org.greenrobot.greendao.query.QueryBuilder;
 
 /**
- * Created by jiaenfeng on 17/9/30.
+ * Created by MrHou
+ *
+ * @on 2017/11/15  13:42
+ * @email houzhongzhou@yeah.net
+ * @desc 实体类
  */
 
 public class DaoManager {
