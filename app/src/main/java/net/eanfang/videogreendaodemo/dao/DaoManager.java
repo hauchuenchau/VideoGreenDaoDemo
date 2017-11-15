@@ -53,7 +53,7 @@ public class DaoManager {
             // 所以，在正式的项目中，你还应该做一层封装，来实现数据库的安全升级。
             MySQLiteOpenHelper helper = new MySQLiteOpenHelper(APP.mMyApplication, DB_NAME, null);
             daoMaster = new DaoMaster(helper.getWritableDatabase());
-            daoMaster = new DaoMaster(helper.getEncryptedWritableDb("123")); //加密 uuid
+//            daoMaster = new DaoMaster(helper.getEncryptedWritableDb("123")); //加密 uuid
         }
         return daoMaster;
     }

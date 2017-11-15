@@ -54,6 +54,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'net.zetetic:android-database-sqlcipher:3.5.3'
-    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.4.0'
+//    compile 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v1.4.0'
 
 }

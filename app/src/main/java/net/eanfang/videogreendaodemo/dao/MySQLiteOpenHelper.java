@@ -3,7 +3,6 @@ package net.eanfang.videogreendaodemo.dao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.github.yuweiguocn.library.greendao.MigrationHelper;
 
 import net.eanfang.videogreendaodemo.DaoMaster;
 import net.eanfang.videogreendaodemo.ModelDao;
