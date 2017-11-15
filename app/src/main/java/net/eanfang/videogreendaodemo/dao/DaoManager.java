@@ -12,7 +12,7 @@ import org.greenrobot.greendao.query.QueryBuilder;
  *
  * @on 2017/11/15  13:42
  * @email houzhongzhou@yeah.net
- * @desc 实体类
+ * @desc
  */
 
 public class DaoManager {
