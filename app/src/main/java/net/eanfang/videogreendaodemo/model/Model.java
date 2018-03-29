@@ -1,4 +1,4 @@
-package net.eanfang.videogreendaodemo;
+package net.eanfang.videogreendaodemo.model;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

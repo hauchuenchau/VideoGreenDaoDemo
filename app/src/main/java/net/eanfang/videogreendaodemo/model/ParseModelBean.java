@@ -1,4 +1,4 @@
-package net.eanfang.videogreendaodemo;
+package net.eanfang.videogreendaodemo.model;
 
 import com.google.gson.Gson;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * @desc
  */
 
-public class ParseVideoBean {
+public class ParseModelBean {
     private List<Model> items;
 
     public List<Model> getItems() {
@@ -24,6 +24,6 @@ public class ParseVideoBean {
     }
 
     public static List<Model> parseData(String json) {
-        return new Gson().fromJson(json, ParseVideoBean.class).getItems();
+        return new Gson().fromJson(json, ParseModelBean.class).getItems();
     }
 }

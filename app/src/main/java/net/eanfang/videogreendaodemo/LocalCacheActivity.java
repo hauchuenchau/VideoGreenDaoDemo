@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
-import net.eanfang.videogreendaodemo.adapter.MainAdapter;
-import net.eanfang.videogreendaodemo.dao.DBUtils;
-import net.eanfang.videogreendaodemo.model.Model;
-import net.eanfang.videogreendaodemo.model.ParseModelBean;
+import net.eanfang.videogreendaodemo.adapter.LocalAdapter;
+import net.eanfang.videogreendaodemo.localcache.CacheGetCallBack;
+import net.eanfang.videogreendaodemo.localcache.CacheUtil;
+import net.eanfang.videogreendaodemo.model.ParseVideoBean;
+import net.eanfang.videogreendaodemo.model.VideoBean;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,8 +23,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by MrHou
+ *
+ * @on 2018/3/29  15:52
+ * @email houzhongzhou@yeah.net
+ * @desc
+ */
 
+public class LocalCacheActivity extends AppCompatActivity {
     @BindView(R.id.rev_list)
     RecyclerView revList;
 
@@ -31,15 +40,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        getByNet();
+        initView();
     }
 
     private void initView() {
-        if (DBUtils.queryAll(Model.class).size() > 0) {
-            setData(DBUtils.loadAll(Model.class));
-        } else {
-            getByNet();
-        }
+
+        CacheUtil.get(LocalCacheActivity.this, getPackageName(), "test", new CacheGetCallBack() {
+            @Override
+            public void readValue(String result) {
+
+                if (result != null) {
+//
+                    Log.e("cahce",result);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final List<VideoBean> list = ParseVideoBean.parseData(result);
+                            setData(list);
+                        }
+                    });
+
+                } else {
+                    getByNet();
+                }
+            }
+        });
+
+
     }
 
     private void getByNet() {
@@ -56,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     String json = response.body().string();
-                    final List<Model> list = ParseModelBean.parseData(json);
-                    DBUtils.insertOrReplaceList(Model.class, list);
+                    final List<VideoBean> list = ParseVideoBean.parseData(json);
+                    CacheUtil.put(LocalCacheActivity.this, getPackageName(), "test", json);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -73,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setData(List<Model> list) {
-        MainAdapter adapter = new MainAdapter(R.layout.recyclerview_item, list);
-        revList.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+    private void setData(List<VideoBean> list) {
+        LocalAdapter adapter = new LocalAdapter(R.layout.recyclerview_item, list);
+        revList.setLayoutManager(new LinearLayoutManager(this));
         revList.setAdapter(adapter);
     }
 }
